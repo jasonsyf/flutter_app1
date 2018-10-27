@@ -2,27 +2,30 @@ import 'package:flutter/material.dart';
 import './views/page_first.dart';
 import './views/page_second.dart';
 import './views/page_third.dart';
+import './views/page_fourth.dart';
 
 void main() {
-  runApp(new MaterialApp(home: new FlutterView(),));
+  runApp(MaterialApp(
+    home: FlutterView(),
+  ));
 }
 
 class FlutterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
+    return MaterialApp(
       title: 'Flutter View',
-      theme: new ThemeData(
+      theme: ThemeData(
         primarySwatch: Colors.grey,
       ),
-      home: new MyHomePage(),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
   @override
-  _MyHomePageState createState() => new _MyHomePageState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage>
@@ -32,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage>
   @override
   void initState() {
     super.initState();
-    controller = new TabController(vsync: this, length: 3);
+    controller = TabController(vsync: this, length: 4);
   }
 
   @override
@@ -43,27 +46,31 @@ class _MyHomePageState extends State<MyHomePage>
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      body: new TabBarView(
+    return Scaffold(
+//      appBar: AppBar(
+//        title: Text("Welcome to Flutter！！！"),
+//      ),
+      body: TabBarView(
         controller: controller,
         children: <Widget>[
-          new FirstPage(),
-          new SecondPage(),
-          new ThirdPage(),
+          RanDomWords(),
+          SecondPage(),
+          ThirdPage(),
+//          FourthPage(),
         ],
       ),
-      bottomNavigationBar: new Material(
+      bottomNavigationBar: Material(
         color: Colors.orangeAccent,
-        child: new TabBar(
+        child: TabBar(
           controller: controller,
           tabs: <Widget>[
-            new Tab(text: "列表", icon: new Icon(Icons.home)),
-            new Tab(text: "通知", icon: new Icon(Icons.message)),
-            new Tab(text: "我的", icon: new Icon(Icons.cloud)),
-
-          ],//tab
-        ),//tabbar
-      ),//meterial
-    );//Scaffold
+            Tab(text: "列表", icon: Icon(Icons.home)),
+            Tab(text: "通知", icon: Icon(Icons.message)),
+            Tab(text: "我的", icon: Icon(Icons.cloud)),
+//            Tab(text: "列表", icon: Icon(Icons.list)),
+          ], //tab
+        ), //tabbar
+      ), //meterial
+    ); //Scaffold
   }
 }
